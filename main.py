@@ -24,10 +24,10 @@ if (os.path.exists("out")):
 else:
     os.mkdir("out")
 
-for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 15, 18, 22]:
-    with zipfile.ZipFile(f"out/disable-vignette-{ranges.get(i)}.zip", "w") as f:
+for format, range in ranges.items():
+    with zipfile.ZipFile(f"out/disable-vignette-{range}.zip", "w") as f:
         with open("pack.mcmeta") as meta:
-            f.writestr("pack.mcmeta", meta.read().replace("${pack_format}", str(i)))
+            f.writestr("pack.mcmeta", meta.read().replace("${pack_format}", str(format)))
         f.write("assets/minecraft/textures/misc/vignette.png")
         f.write("license")
 
